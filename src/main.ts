@@ -22,6 +22,35 @@ function displayDoor(state: boolean) {
 WA.onInit().then(async () => {
     console.log('Scripting API ready');
 
+    let noteWebsite: any;
+
+        WA.room.onEnterLayer("visibleNote").subscribe(async () => {
+            console.log("Entering visibleNote layer");
+
+            noteWebsite = await WA.ui.website.open({
+                url: "./note.html",
+                position: {
+                    vertical: "top",
+                    horizontal: "middle",
+                },
+                size: {
+                    height: "30vh",
+                    width: "50vw",
+                },
+                margin: {
+                    top: "10vh",
+                },
+                allowApi: true,
+            });
+
+        });
+
+        WA.room.onLeaveLayer("visibleNote").subscribe(() => {
+            noteWebsite.close();
+        });
+
+    }).catch(e => console.error(e));
+
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     // Most notably for us, it is used to generate the "Configure the room" menu and to handle the "bell".
     bootstrapExtra().then(() => {
