@@ -567,9 +567,9 @@
          "value":"Office"
         }, 
         {
-         "name":"scriptTest",
+         "name":"script",
          "type":"string",
-         "value":"src\/test.ts"
+         "value":"src\/main.ts"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
