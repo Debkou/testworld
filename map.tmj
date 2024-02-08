@@ -569,11 +569,6 @@
         {
          "name":"script",
          "type":"string",
-         "value":"src\/mainx.ts"
-        }, 
-        {
-         "name":"scriptTest",
-         "type":"string",
          "value":"src\/test.ts"
         }],
  "renderorder":"right-down",
