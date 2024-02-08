@@ -569,6 +569,11 @@
         {
          "name":"script",
          "type":"string",
+         "value":"src\/main.ts"
+        }, 
+        {
+         "name":"scriptTest",
+         "type":"string",
          "value":"src\/testkop.ts"
         }],
  "renderorder":"right-down",
