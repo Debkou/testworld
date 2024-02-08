@@ -12,5 +12,22 @@ WA.onInit().then(() => {
         const time = today.getHours() + ":" + today.getMinutes();
         currentPopup = WA.ui.openPopup("clockPopup", "It's " + time, []);
     })
-Access-Control-Allow-Origin: *
-WA.chat.sendChatMessage('Hello world', 'Mr Robot');
+
+        WA.room.area.onLeave('clock').subscribe(closePopup)
+
+        // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
+        bootstrapExtra().then(() => {
+            console.log('Scripting API Extra ready');
+        }).catch(e => console.error(e));
+
+    }).catch(e => console.error(e));
+
+    function closePopup(){
+        if (currentPopup !== undefined) {
+            currentPopup.close();
+            currentPopup = undefined;
+        }
+    }
+  Access-Control-Allow-Origin: *
+  WA.chat.sendChatMessage('Hello world', 'Mr Robot');
+    export {};
