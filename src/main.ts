@@ -22,47 +22,44 @@ function displayDoor(state: boolean) {
 WA.onInit().then(async () => {
     console.log('Scripting API ready');
 
-
-
-
-    // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
-    // Most notably for us, it is used to generate the "Configure the room" menu and to handle the "bell".
-    bootstrapExtra().then(() => {
+    // Bootstrap the Scripting API Extra library
+    try {
+        await bootstrapExtra();
         console.log('Scripting API Extra ready');
-    }).catch(e => console.error(e));
 
+        // The doorState variable contains the state of the door.
+        // True: the door is open
+        // False: the door is closed
+        // Upon load, the function below is called to initiate the door state.
+        displayDoor(WA.state.doorState);
 
-    // The doorState variable contains the state of the door.
-    // True: the door is open
-    // False: the door is closed
-    // Upon load, the function bellow is called to initiate the door state.
-    displayDoor(WA.state.doorState);
+        // After load, listen to variable changes to display the correct door image.
+        WA.state.onVariableChange('doorState').subscribe((doorState) => {
+            // Each time the "doorState" variable changes, call the "displayDoor" function to update the door image visually.
+            displayDoor(doorState as boolean);
+        });
 
-    // After load, we listen to variable change to display the correct door image.
-    WA.state.onVariableChange('doorState').subscribe((doorState) => {
-        // Each time the "doorState" variable changes, we call the "displayDoor" function to update the door image visually.
-        displayDoor(doorState as boolean);
-    });
+        let openCloseMessage: ActionMessage | undefined;
 
-    let openCloseMessage: ActionMessage | undefined;
+        // When someone walks on the doorstep (inside the room), display a message to explain how to open or close the door
+        WA.room.onEnterLayer('doorsteps/inside_doorstep').subscribe(() => {
+            openCloseMessage = WA.ui.displayActionMessage({
+                message: "Press 'space' to open/close the door",
+                callback: () => {
+                    WA.state.doorState = !WA.state.doorState;
+                }
+            });
+        });
 
-    // When someone walks on the doorstep (inside the room), we display a message to explain how to open or close the door
-    WA.room.onEnterLayer('doorsteps/inside_doorstep').subscribe(() => {
-        openCloseMessage = WA.ui.displayActionMessage({
-            message: "Press 'space' to open/close the door",
-            callback: () => {
-                WA.state.doorState = !WA.state.doorState;
+        // When someone leaves the doorstep (inside the room), remove the message
+        WA.room.onLeaveLayer('doorsteps/inside_doorstep').subscribe(() => {
+            if (openCloseMessage !== undefined) {
+                openCloseMessage.remove();
             }
         });
-    });
 
-    // When someone leaves the doorstep (inside the room), we remove the message
-    WA.room.onLeaveLayer('doorsteps/inside_doorstep').subscribe(() => {
-        if (openCloseMessage !== undefined) {
-            openCloseMessage.remove();
-        }
-    });
-    let noteWebsite: any;
+        // Handle visibleNote layer
+        let noteWebsite: any;
 
         WA.room.onEnterLayer("visibleNote").subscribe(async () => {
             console.log("Entering visibleNote layer");
@@ -88,9 +85,10 @@ WA.onInit().then(async () => {
         WA.room.onLeaveLayer("visibleNote").subscribe(() => {
             noteWebsite.close();
         });
-}).catch(e => console.error(e));
 
-
-
+    } catch (e) {
+        console.error(e);
+    }
+});
 
 export {};
