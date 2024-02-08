@@ -719,6 +719,20 @@
          "tilecount":273,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "columns":12,
+         "firstgid":2956,
+         "image":"tilesets\/rpg_maker_vx___door_i_2_by_ayene_chan_d5rcrbq.png",
+         "imageheight":256,
+         "imagewidth":384,
+         "margin":0,
+         "name":"Door",
+         "spacing":0,
+         "tilecount":96,
+         "tileheight":32,
+         "tilewidth":32,
+         "transparentcolor":"#402507"
         }],
  "tilewidth":32,
  "type":"map",
