@@ -62,40 +62,35 @@ WA.onInit().then(async () => {
             openCloseMessage.remove();
         }
     });
-}).catch(e => console.error(e));
-
-// Waiting for the API to be ready
-WA.onInit().then(() => {
-    console.log('Scripting API ready');
-
     let noteWebsite: any;
 
-    WA.room.onEnterLayer("visibleNote").subscribe(async () => {
-        console.log("Entering visibleNote layer");
+        WA.room.onEnterLayer("visibleNote").subscribe(async () => {
+            console.log("Entering visibleNote layer");
 
-        noteWebsite = await WA.ui.website.open({
-            url: "./note.html",
-            position: {
-                vertical: "top",
-                horizontal: "middle",
-            },
-            size: {
-                height: "30vh",
-                width: "50vw",
-            },
-            margin: {
-                top: "10vh",
-            },
-            allowApi: true,
+            noteWebsite = await WA.ui.website.open({
+                url: "./note.html",
+                position: {
+                    vertical: "top",
+                    horizontal: "middle",
+                },
+                size: {
+                    height: "30vh",
+                    width: "50vw",
+                },
+                margin: {
+                    top: "10vh",
+                },
+                allowApi: true,
+            });
+
         });
 
-    });
-
-    WA.room.onLeaveLayer("visibleNote").subscribe(() => {
-        noteWebsite.close();
-    });
-
+        WA.room.onLeaveLayer("visibleNote").subscribe(() => {
+            noteWebsite.close();
+        });
 }).catch(e => console.error(e));
+
+
 
 
 export {};
