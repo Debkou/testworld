@@ -569,7 +569,7 @@
         {
          "name":"script",
          "type":"string",
-         "value":"src\/main.ts"
+         "value":"\"C:UserskouadOneDriveDokumenteGitHubtestworldsrctest.ts\""
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
