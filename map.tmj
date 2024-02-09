@@ -498,30 +498,29 @@
          "y":0
         }, 
         {
-         "class":"variable",
          "draworder":"topdown",
          "id":71,
-         "name":"noteText",
+         "name":"objekt",
          "objects":[
                 {
                  "height":0,
                  "id":21,
                  "name":"noteText",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"persist",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"variable",
                  "visible":true,
                  "width":0,
                  "x":304,
                  "y":304
                 }],
          "opacity":1,
-         "properties":[
-                {
-                 "name":"persist",
-                 "type":"bool",
-                 "value":true
-                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
