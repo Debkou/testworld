@@ -11,6 +11,12 @@ const saveButton = document.getElementById("saveButton") as HTMLButtonElement;
 function displaySavedNoteText() {
     const savedNoteText = WA.state.noteText ?? "";
     console.log("Saved Note Text:", savedNoteText);
+
+    // Check if the saved note text is "hallo"
+    if (savedNoteText.toLowerCase() === "hallo") {
+        // If the note text is "hallo", send a chat message
+        WA.chat.sendChatMessage('Hello world', 'Mr Robot');
+    }
 }
 
 // Waiting for the API to be ready
@@ -25,7 +31,7 @@ WA.onInit().then(() => {
         // Save the note text in the state
         WA.state.noteText = noteTextArea.value;
 
-        // Display the saved note text in the console
+        // Display the saved note text in the console and check for the condition
         displaySavedNoteText();
     });
 
