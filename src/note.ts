@@ -10,32 +10,32 @@ const saveButton = document.getElementById("saveButton") as HTMLButtonElement;
 // Function to display the saved note text
 function displaySavedNoteText() {
     const savedNoteText = WA.state.noteText ?? "";
-    console.log("Saved Note Text:", savedNoteText);
+    console.log("Saved Note Text:", savedNoteText); //Übersicht
 
-    // Check if the saved note text is "hallo"
+    // prüfen ob die eingabe "hallo" ist
     if (savedNoteText.toLowerCase() === "hallo") {
-        // If the note text is "hallo", send a chat message
+        // wenn ja dann Nachricht in den chat schicken  - in dem Bereich können auch türen geöffnet werden
         WA.chat.sendChatMessage('Hello world', 'Mr Robot');
     }
 }
 
-// Waiting for the API to be ready
+
 WA.onInit().then(() => {
     console.log('Scripting API ready');
 
-    // Load and display the saved note text
+    // gespeicherte nachrichten laden
     noteTextArea.value = (WA.state.noteText ?? "") as string;
 
-    // Add click event listener to the save button
+    // text wird durch klicken gespeichert
     saveButton.addEventListener("click", () => {
-        // Save the note text in the state
+
         WA.state.noteText = noteTextArea.value;
 
-        // Display the saved note text in the console and check for the condition
+        // zur Überprüfung wird der gespeicherte text in der console angezeigt
         displaySavedNoteText();
     });
 
-    // Display the saved note text on initialization
+
     displaySavedNoteText();
 }).catch(e => console.error(e));
 
