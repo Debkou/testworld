@@ -68,7 +68,7 @@ WA.onInit().then(async () => {
                 url: "src/note.html",
                 position: {
                     vertical: "top",
-                    horizontal: "middle",
+                    horizontal: "middle"
                 },
                 size: {
                     height: "30vh",
