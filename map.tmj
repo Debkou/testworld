@@ -809,11 +809,6 @@
          "name":"script",
          "type":"string",
          "value":"src\/main.ts"
-        }, 
-        {
-         "name":"scriptNote",
-         "type":"string",
-         "value":"src\/note.ts"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
