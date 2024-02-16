@@ -20,9 +20,9 @@ function displayDoor(state: boolean) {
 
 function displayBlock(state: boolean) {
     if (state === true) {
-        WA.room.hideLayer('block/doorFeld');
+        WA.room.hideLayer('block/blockFeld');
     } else {
-        WA.room.showLayer('block/doorFeld');
+        WA.room.showLayer('block/blockFeld');
     }
 }
 
