@@ -37,6 +37,7 @@ function displaySavedNoteText() {
 
         // Tür öffnen
             WA.state.doorState = true;
+             WA.state.blockState = true;
     }
 }
 
