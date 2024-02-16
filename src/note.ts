@@ -7,6 +7,16 @@ console.log('Script started successfully');
 const noteTextArea = document.getElementById("noteTextArea") as HTMLTextAreaElement;
 const saveButton = document.getElementById("saveButton") as HTMLButtonElement;
 
+
+function displayDoor(state: boolean) {
+    if (state === true) {
+        WA.room.showLayer('door/door_opened');
+        WA.room.hideLayer('door/door_closed');
+    } else {
+        WA.room.hideLayer('door/door_opened');
+        WA.room.showLayer('door/door_closed');
+    }
+}
 // Function to display the saved note text
 function displaySavedNoteText() {
     const savedNoteText = WA.state.noteText ?? "";
@@ -15,14 +25,24 @@ function displaySavedNoteText() {
     // prüfen ob die eingabe "hallo" ist
     if (savedNoteText.toLowerCase() === "hallo") {
         // wenn ja dann Nachricht in den chat schicken  - in dem Bereich können auch türen geöffnet werden
-        WA.chat.sendChatMessage('Hello world', 'Mr Robot');
+
+        // Tür öffnen
+            WA.state.doorState = true;
     }
 }
+
 
 
 WA.onInit().then(() => {
     console.log('Scripting API ready');
 
+    displayDoor(WA.state.doorState);
+
+           // After load, listen to variable changes to display the correct door image.
+     WA.state.onVariableChange('doorState').subscribe((doorState) => {
+                // Each time the "doorState" variable changes, call the "displayDoor" function to update the door image visually.
+                displayDoor(doorState as boolean);
+        });
     // gespeicherte nachrichten laden
     noteTextArea.value = (WA.state.noteText ?? "") as string;
 
