@@ -17,6 +17,15 @@ function displayDoor(state: boolean) {
         WA.room.showLayer('door/door_closed');
     }
 }
+
+function displayBlock(state: boolean) {
+    if (state === true) {
+        WA.room.hideLayer('block/doorFeld');
+    } else {
+        WA.room.showLayer('block/doorFeld');
+    }
+}
+
 // Function to display the saved note text
 function displaySavedNoteText() {
     const savedNoteText = WA.state.noteText ?? "";
@@ -38,11 +47,18 @@ WA.onInit().then(() => {
 
     displayDoor(WA.state.doorState);
 
+    displayBlock(WA.state.blockState);
+
            // After load, listen to variable changes to display the correct door image.
      WA.state.onVariableChange('doorState').subscribe((doorState) => {
                 // Each time the "doorState" variable changes, call the "displayDoor" function to update the door image visually.
                 displayDoor(doorState as boolean);
         });
+
+             WA.state.onVariableChange('blockState').subscribe((blockState) => {
+                        // Each time the "doorState" variable changes, call the "displayDoor" function to update the door image visually.
+                        displayBlock(blockState as boolean);
+                });
     // gespeicherte nachrichten laden
     noteTextArea.value = (WA.state.noteText ?? "") as string;
 
