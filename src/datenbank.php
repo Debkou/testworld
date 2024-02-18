@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 // Datenbankverbindung herstellen (Sie müssen die tatsächlichen Zugangsdaten einfügen)
 $servername = "localhost";
 $username = "root";
