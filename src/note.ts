@@ -26,7 +26,7 @@ function displayBlock(state: boolean) {
 }
 
 // Funktion, um die Lösung in der Datenbank zu überprüfen
-async function checkSolutionInDatabase(userInput: string): Promise<boolean> {
+function checkSolutionInDatabase(userInput: string): Promise<boolean> {
     const response = await fetch('datenbank.php', {
         method: 'POST',
         headers: {
@@ -40,7 +40,7 @@ async function checkSolutionInDatabase(userInput: string): Promise<boolean> {
 }
 
 // Funktion zum Anzeigen des gespeicherten Notiztextes
-async function displaySavedNoteText() {
+function displaySavedNoteText() {
     const savedNoteText = WA.state.noteText ?? "";
     console.log("Saved Note Text:", savedNoteText);
 
