@@ -7,6 +7,7 @@ console.log('Script started successfully');
 const noteTextArea = document.getElementById("noteTextArea") as HTMLTextAreaElement;
 const saveButton = document.getElementById("saveButton") as HTMLButtonElement;
 
+
 function displayDoor(state: boolean) {
     if (state === true) {
         WA.room.showLayer('door/door_opened');
@@ -25,64 +26,52 @@ function displayBlock(state: boolean) {
     }
 }
 
-// Funktion, um die Lösung in der Datenbank zu überprüfen
-function checkSolutionInDatabase(userInput: string): Promise<boolean> {
-    const response = await fetch('datenbank.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `userInput=${encodeURIComponent(userInput)}`,
-    });
-
-    const result = await response.json();
-    return result.valid;
-}
-
-// Funktion zum Anzeigen des gespeicherten Notiztextes
+// Function to display the saved note text
 function displaySavedNoteText() {
     const savedNoteText = WA.state.noteText ?? "";
-    console.log("Saved Note Text:", savedNoteText);
+    console.log("Saved Note Text:", savedNoteText); //Übersicht
 
-    // Überprüfen, ob die Lösung in der Datenbank vorhanden ist
-    const isValidSolution = await checkSolutionInDatabase(savedNoteText.toLowerCase());
+    // prüfen ob die eingabe "hallo" ist
+    if (savedNoteText.toLowerCase() === "hallo") {
+        // wenn ja dann Nachricht in den chat schicken  - in dem Bereich können auch türen geöffnet werden
 
-    if (isValidSolution) {
-        // Wenn die Lösung gültig ist, Tür und Block öffnen
-        WA.state.doorState = true;
-        WA.state.blockState = true;
-    } else {
-        // Andernfalls Tür und Block schließen
-        WA.state.doorState = false;
-        WA.state.blockState = false;
+        // Tür öffnen
+            WA.state.doorState = true;
+             WA.state.blockState = true;
     }
 }
+
+
 
 WA.onInit().then(() => {
     console.log('Scripting API ready');
 
     displayDoor(WA.state.doorState);
+
     displayBlock(WA.state.blockState);
 
-    // Nach dem Laden auf Variablenänderungen hören, um das richtige Türbild anzuzeigen.
-    WA.state.onVariableChange('doorState').subscribe((doorState) => {
-        displayDoor(doorState as boolean);
-    });
+           // After load, listen to variable changes to display the correct door image.
+     WA.state.onVariableChange('doorState').subscribe((doorState) => {
+                // Each time the "doorState" variable changes, call the "displayDoor" function to update the door image visually.
+                displayDoor(doorState as boolean);
+        });
 
-    WA.state.onVariableChange('blockState').subscribe((blockState) => {
-        displayBlock(blockState as boolean);
-    });
-
-    // Gespeicherte Nachrichten laden
+             WA.state.onVariableChange('blockState').subscribe((blockState) => {
+                        // Each time the "doorState" variable changes, call the "displayDoor" function to update the door image visually.
+                        displayBlock(blockState as boolean);
+                });
+    // gespeicherte nachrichten laden
     noteTextArea.value = (WA.state.noteText ?? "") as string;
 
-    // Text wird durch Klicken gespeichert
+    // text wird durch klicken gespeichert
     saveButton.addEventListener("click", () => {
+
         WA.state.noteText = noteTextArea.value;
 
-        // Zur Überprüfung wird der gespeicherte Text in der Konsole angezeigt
+        // zur Überprüfung wird der gespeicherte text in der console angezeigt
         displaySavedNoteText();
     });
+
 
     displaySavedNoteText();
 }).catch(e => console.error(e));
