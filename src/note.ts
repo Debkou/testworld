@@ -27,7 +27,7 @@ function displayBlock(state: boolean) {
 
 async function checkDatabase(savedNoteText: string) {
     try {
-        const apiUrl = "src/abfrage.php";
+        const apiUrl = "path/to/checkNoteText.php";
 
         const response = await fetch(apiUrl, {
             method: "POST",
@@ -56,38 +56,18 @@ function displaySavedNoteText() {
 
     // Überprüfen, ob die Bedingung erfüllt ist
     checkDatabase(savedNoteText);
-
-    // prüfen ob die eingabe "hallo" ist
-    if (savedNoteText.toLowerCase() === "hallo") {
-        // wenn ja, dann Nachricht in den Chat schicken - in dem Bereich können auch Türen geöffnet werden
-        WA.state.doorState = true;
-        WA.state.blockState = true;
-    }
 }
 
 WA.onInit().then(() => {
-    console.log('Scripting API ready');
+    // ...
 
-    displayDoor(WA.state.doorState);
-
-    displayBlock(WA.state.blockState);
-
-    WA.state.onVariableChange('doorState').subscribe((doorState) => {
-        displayDoor(doorState as boolean);
-    });
-
-    WA.state.onVariableChange('blockState').subscribe((blockState) => {
-        displayBlock(blockState as boolean);
-    });
-
-    noteTextArea.value = (WA.state.noteText ?? "") as string;
-
+    // text wird durch Klicken gespeichert
     saveButton.addEventListener("click", () => {
         WA.state.noteText = noteTextArea.value;
         displaySavedNoteText();
     });
 
-    displaySavedNoteText();
+    // ...
 }).catch(e => console.error(e));
 
 export {};
