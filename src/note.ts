@@ -27,7 +27,7 @@ function displayBlock(state: boolean) {
 
 async function checkDatabase(savedNoteText: string) {
     try {
-        const apiUrl = "abfrage.php";
+        const apiUrl = "C:/xampp/htdocs/projekt/testworld/abfrage.php";
 
         const response = await fetch(apiUrl, {
             method: "POST",
