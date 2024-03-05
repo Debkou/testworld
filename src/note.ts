@@ -27,7 +27,7 @@ function displayBlock(state: boolean) {
 
 async function checkDatabase(savedNoteText: string) {
     try {
-        const apiUrl = "path/to/checkNoteText.php";
+        const apiUrl = "src/abfrage.php";
 
         const response = await fetch(apiUrl, {
             method: "POST",
