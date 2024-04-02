@@ -9,7 +9,7 @@
 
 <?php
 // Verbindung zur Datenbank herstellen
-$servername = "85.13.145.167"; // Dein Hostname
+$servername = "w0188670.kasserver.com"; // Dein Hostname
 $username = "d04009b1"; // Dein MySQL-Benutzername
 $password = "javapw"; // Dein MySQL-Passwort, falls vorhanden
 $database = "d04009b1"; // Der Name deiner Datenbank
