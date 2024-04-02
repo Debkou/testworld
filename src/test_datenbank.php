@@ -9,7 +9,7 @@
 
 <?php
 // Verbindung zur Datenbank herstellen
-$servername = "localhost"; // Dein Hostname
+$servername = "127.0.0.1"; // Dein Hostname
 $username = "root"; // Dein MySQL-Benutzername
 $password = ""; // Dein MySQL-Passwort, falls vorhanden
 $database = "testworld"; // Der Name deiner Datenbank
