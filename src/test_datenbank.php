@@ -9,10 +9,10 @@
 
 <?php
 // Verbindung zur Datenbank herstellen
-$servername = "127.0.0.1"; // Dein Hostname
-$username = "root"; // Dein MySQL-Benutzername
-$password = ""; // Dein MySQL-Passwort, falls vorhanden
-$database = "testworld"; // Der Name deiner Datenbank
+$servername = "Localhost"; // Dein Hostname
+$username = "d04009b1@localhost"; // Dein MySQL-Benutzername
+$password = "schokokeks"; // Dein MySQL-Passwort, falls vorhanden
+$database = "d04009b1"; // Der Name deiner Datenbank
 
 // Verbindung herstellen
 $conn = new mysqli($servername, $username, $password, $database);
