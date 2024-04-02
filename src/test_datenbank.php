@@ -1,25 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <style>
-            body {
-                background-color: white;
-            }
-            textarea {
-                width: 100%;
-                height: 100px;
-            }
-            pre {
-                text-align: center;
-            }
-        </style>
-		
-		      <script src="https://play.workadventu.re/iframe_api.js"></script>
-        <script type="module" src="note.ts"></script>
-    </head>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenbank Anzeige</title>
+</head>
+<body>
 
-    <body>
-  <?php
+<?php
 // Verbindung zur Datenbank herstellen
 $servername = "localhost"; // Dein Hostname
 $username = "root"; // Dein MySQL-Benutzername
@@ -54,6 +42,6 @@ if ($result->num_rows > 0) {
 // Verbindung schließen
 $conn->close();
 ?>
-        <pre id="displayText"></pre>
-    </body>
+
+</body>
 </html>

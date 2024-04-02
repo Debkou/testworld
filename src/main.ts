@@ -90,7 +90,7 @@ WA.onInit().then(async () => {
                     console.log("Entering visibleNote layer");
 
                     noteWebsite = await WA.ui.website.open({
-                        url: "src/datenbank_anzeige.html",
+                        url: "src/test_datenbank.php",
                         position: {
                             vertical: "top",
                             horizontal: "middle"
