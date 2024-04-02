@@ -10,8 +10,8 @@
 <?php
 // Verbindung zur Datenbank herstellen
 $servername = "Localhost"; // Dein Hostname
-$username = "d04009b1@localhost"; // Dein MySQL-Benutzername
-$password = "schokokeks"; // Dein MySQL-Passwort, falls vorhanden
+$username = "d04009b1"; // Dein MySQL-Benutzername
+$password = "javapw"; // Dein MySQL-Passwort, falls vorhanden
 $database = "d04009b1"; // Der Name deiner Datenbank
 
 // Verbindung herstellen
