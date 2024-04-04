@@ -8,6 +8,7 @@
 <body>
 
 <?php
+	 header("Access-Control-Allow-Origin: *");
 // Verbindung zur Datenbank herstellen
 $servername = "w0188670.kasserver.com"; // Dein Hostname
 $username = "d04009b1"; // Dein MySQL-Benutzername
