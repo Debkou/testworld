@@ -10,10 +10,10 @@
 <?php
 	 header("Access-Control-Allow-Origin: *");
 // Verbindung zur Datenbank herstellen
-$servername = "localhost"; // Dein Hostname
-$username = "root"; // Dein MySQL-Benutzername
-$password = ""; // Dein MySQL-Passwort, falls vorhanden
-$database = "testworld"; // Der Name deiner Datenbank
+$servername = "w0188670.kasserver.com"; // Dein Hostname
+$username = "d04009b1"; // Dein MySQL-Benutzername
+$password = "javapw"; // Dein MySQL-Passwort, falls vorhanden
+$database = "d04009b1"; // Der Name deiner Datenbank
 
 // Verbindung herstellen
 $conn = new mysqli($servername, $username, $password, $database);
