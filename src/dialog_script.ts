@@ -1,7 +1,6 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
 import { bootstrapExtra } from "@workadventure/scripting-api-extra";
-import {ActionMessage} from "@workadventure/iframe-api-typings";
 
 console.log('Script started successfully');
 
@@ -20,9 +19,15 @@ function displayDoor(state: boolean) {
 WA.onInit().then(() => {
     console.log('Scripting API ready');
 
-        bootstrapExtra().then(() => {
-            console.log('Scripting API Extra ready');
-        }).catch(e => console.error(e));
+      bootstrapExtra().then((result) => {
+              console.log('Scripting API Extra ready');
+              // Überprüfe, ob der Rückgabewert von bootstrapExtra() vom Typ "boolean" ist, bevor du ihn displayDoor() übergibst
+              if (typeof result === 'boolean') {
+                  displayDoor(result);
+              } else {
+                  console.error('Fehler: Das Ergebnis von bootstrapExtra() ist nicht vom erwarteten Typ "boolean"');
+              }
+          }).catch(e => console.error(e));
 
             displayDoor(WA.state.light);
 
