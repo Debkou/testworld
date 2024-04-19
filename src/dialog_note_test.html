@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 1</title>
+	<script src="https://play.workadventu.re/iframe_api.js"></script>
+        <script type="module" src="dialog_script.ts"></script>
+    <style>
+		body {
+            overflow: hidden;
+        }
+        #textContainer {
+            width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+			background-color: white;
+        }
+
+        .arrow {
+            cursor: pointer;
+            margin: 0 10px;
+			color: #FFFFFF;
+        }
+
+        #noteTextArea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="textContainer">
+        <p id="text1">Woka: "Die Semesterparty gestern ging ganz schön lang..."</p>
+		<p id="text2">Woka: "Wie bin ich eigentlich nach Hause gekommen? - <br>Vielleicht war das letzte bier doch keine gute Idee"</p>
+        <p id="text3" style="display: none;">Woka: "Ganz schön dunkel hier.."</p>
+        <p id="text4" style="display: none;">Woka: "hmm.. komisch. Eigentlich müsste der Lichtschalter hier sein. Alles anders hier!"</p>
+		<p id="text5" style="display: none;">Stimme aus dem off: "Entschuldigen Sie, dass habe ich leider nicht verstanden!"</p>
+		<p id="text6" style="display: none;">Woka: "Alexa?!"</p>
+		<p id="text7" style="display: none;">Alexa: "mhm? Was kann ich für Sie tun?"</p>
+		<p id="text8" style="display: none;">Woka: "Ich habe doch gar keine Alexa. Ich denke die kann irgendwie hilfreich sein."</p>
+		<p id="text9" style="display: none;">Finde Heraus wie du mit Hilfe von Alexa das Licht einschalten kannst. Alexa hört auf den Befehl "Alexa, Licht an!"<br> Tipp: erinnerst du dich daran wie du etwas in Java ausgeben kannst?</p>
+        <div id="text10" style="display: none;">
+            <div>
+                <textarea id="noteTextArea"></textarea>
+            </div>
+            <div>
+                <button id="saveButton">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="arrowContainer">
+        <span id="leftArrow" class="arrow">&larr;</span>
+        <span id="rightArrow" class="arrow">&rarr;</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const texts = document.querySelectorAll('#textContainer > p, #textContainer > div');
+            let currentIndex = 0;
+
+            function showText(index) {
+                texts.forEach((text, i) => {
+                    if (i === index) {
+                        text.style.display = 'block';
+                    } else {
+                        text.style.display = 'none';
+                    }
+                });
+            }
+
+            function showNextText() {
+                currentIndex = (currentIndex + 1) % texts.length;
+                showText(currentIndex);
+            }
+
+            function showPreviousText() {
+                currentIndex = (currentIndex - 1 + texts.length) % texts.length;
+                showText(currentIndex);
+            }
+
+            function setupArrowClickHandlers() {
+                const leftArrow = document.getElementById('leftArrow');
+                const rightArrow = document.getElementById('rightArrow');
+
+                leftArrow.addEventListener('click', showPreviousText);
+                rightArrow.addEventListener('click', showNextText);
+            }
+
+            setupArrowClickHandlers();
+            showText(currentIndex);
+        });
+    </script>
+</body>
+</html>
