@@ -76,6 +76,7 @@ WA.onInit().then(async () => {
         displayDoor(doorState as boolean);
     });
 
+    let openCloseMessage: ActionMessage | undefined;
 
     // When someone walks on the doorstep (inside the room), we display a message to explain how to open or close the door
     WA.room.onEnterLayer('visibleLight').subscribe(() => {
