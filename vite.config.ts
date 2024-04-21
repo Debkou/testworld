@@ -28,7 +28,7 @@ export default defineConfig({
             input: {
                 index: "./index.html",
                   note: "./note.html",
-                  note: "./dialog_note.html",
+                  noteDialog: "./dialog_note.html",
                 ...getMapsScripts(maps),
             },
         },
