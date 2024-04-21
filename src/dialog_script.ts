@@ -29,7 +29,7 @@ WA.onInit().then(() => {
               }
           }).catch(e => console.error(e));
 
-            displayDoor(WA.state.light);
+           displayDoor(WA.state.light as boolean);
 
     WA.state.onVariableChange('light').subscribe((light) => {
         // Each time the "doorState" variable changes, we call the "displayDoor" function to update the door image visually.

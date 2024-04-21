@@ -31,7 +31,7 @@ WA.onInit().then(async () => {
         // True: the door is open
         // False: the door is closed
         // Upon load, the function below is called to initiate the door state.
-        displayDoor(WA.state.doorState);
+        displayDoor(WA.state.doorState as boolean);
 
         // After load, listen to variable changes to display the correct door image.
         WA.state.onVariableChange('doorState').subscribe((doorState) => {
